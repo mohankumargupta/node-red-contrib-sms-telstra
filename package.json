@@ -1,11 +1,17 @@
 {
     "name"         : "node-red-contrib-smstelstra",
     "version"      : "0.0.1",
+    "author": "Mohan Gupta <melbpc.computera@gmail.com>",
     "description"  : "Node that sends a SMS via Telstra SMS API to Australian mobiles",
     "dependencies": {
       "request-promise": "^4.1.1",
       "request": "^2.81.0"
     },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mohankumargupta/node-red-contrib-sms-telstra.git"
+    },
+    "license": "Apache-2.0",    
     "keywords": [ "sms", "telstra", "australia" ],
     "node-red"     : {
         "nodes": {
