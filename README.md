@@ -24,4 +24,4 @@ Author
 ------
 Mohan Gupta
 
-<a href="https://raspberrypisig.github.io">https://raspberrypisig.github.io</a>
+<a href="https://raspberrypisig.github.io" target="_blank">https://raspberrypisig.github.io</a>
