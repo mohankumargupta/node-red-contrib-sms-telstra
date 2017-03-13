@@ -17,11 +17,11 @@ Properties
 
 - **Consumer Key**  Part of API key available on Telstra Dev backend
 - **Consumer Secret** Part of API key available on Telstra Dev backend
-- **Mobile** Must be Australian mobile nummber in the form 04xxxxxxxx
+- **Mobile** Must be Australian mobile number in the form 04xxxxxxxx
 - **Message** The SMS message to send
 
 Author
 ------
 Mohan Gupta
 
-<a href="https://raspberrypisig.github.io" target="blank">https://raspberrypisig.github.io</a>
+<a href="https://raspberrypisig.github.io">https://raspberrypisig.github.io</a>
