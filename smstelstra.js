@@ -6,7 +6,7 @@ module.exports = function (RED) {
   function SmsTelstraNode(config) {
     RED.nodes.createNode(this, config);   
     var node = this;    
-    
+    var messagepayload = "";
 
     this.on('input', function(msg) {
       node.status({fill: 'green', shape: 'dot', text: " "});
@@ -22,11 +22,20 @@ module.exports = function (RED) {
       };
       
 
-      
+      msgpayload = msg.payload;
+
       httpsrequest(options).then(function(body){                 
         
         var access_token = JSON.parse(body).access_token;
         var authorization = "Bearer " + access_token;
+
+        var message = config.message.trim();
+        if (!message) {
+         if (msgpayload) {
+           message = msgpayload;
+         }          
+        }
+        
                        
         var options2 = {
           url: 'https://api.telstra.com/v1/sms/messages',
@@ -36,7 +45,7 @@ module.exports = function (RED) {
           },
           body: {
             to: config.mobile,
-            body: config.message
+            body: message
           },
           json: true
         };
