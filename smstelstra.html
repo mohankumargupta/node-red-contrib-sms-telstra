@@ -32,7 +32,7 @@
   </div>
   <div class="form-row">
    <label for="node-input-message">Message</label>
-   <input type="text" id="node-input-message" placeholder="" />
+   <input type="text" id="node-input-message" placeholder="If empty, msg.payload contains message" />
   </div>
 </script>
 
@@ -57,7 +57,7 @@ SMS to Australian mobile phone using <a href="https://dev.telstra.com/content/sm
 <ul>
   <li>500 - probably means you forgot to configure the node</li>
   <li>401 - means the consumer key and/or consumer secret is wrong</li>
-  <li>422 - probably the phone number is wrong</li>
+  <li>422 - probably the phone number is wrong or message is empty</li>
 
 </ul>
 
