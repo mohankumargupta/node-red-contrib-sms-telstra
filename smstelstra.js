@@ -1,4 +1,5 @@
 var httpsrequest = require('request-promise');
+var errors = require('request-promise/errors');
 
 module.exports = function (RED) {
 
@@ -44,7 +45,13 @@ module.exports = function (RED) {
          node.status({});
          msg.payload = 'SmsTelstra:Success';
          node.send(msg);
-        }).catch( function(reason){
+        }).catch( errors.StatusCodeError, function(reason){
+         node.status({fill: 'red', shape: 'dot', text: " "});
+         setTimeout(function() {
+         node.status({});
+       }, 3000);
+         node.error(reason);
+       }).catch( errors.RequestError, function(reason){
          node.status({fill: 'red', shape: 'dot', text: " "});
          setTimeout(function() {
          node.status({});
@@ -54,13 +61,20 @@ module.exports = function (RED) {
 
 
 
-      }).catch(function(reason) {
+      }).catch(errors.StatusCodeError, function(reason) {
        node.status({fill: 'red', shape: 'dot', text: " "});
        setTimeout(function() {
         node.status({}); 
        }, 3000);
        node.error(reason);
-      });
+      }).catch(errors.RequestError, function(reason){
+         node.status({fill: 'red', shape: 'dot', text: " "});
+         setTimeout(function() {
+         node.status({});
+       }, 3000);
+         node.error(reason);
+
+        });
     });
 
   }
