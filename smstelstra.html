@@ -39,7 +39,7 @@
 <script type="text/x-red" data-help-name="smstelstra">
 SMS to Australian mobile phone using <a href="https://dev.telstra.com/content/sms-api-0">Telstra SMS API</a> 
 <hr/>
-<div>Steps to using Telstra SMS API:<div>
+<h1>Steps to using Telstra SMS API:</h1>
 <ul>
  <li>Register using link above</li>
  <li>Login</li>
@@ -51,6 +51,14 @@ SMS to Australian mobile phone using <a href="https://dev.telstra.com/content/sm
  <li>Click on the App, under the Keys tab, you should see the two bits of info you need:
      a)Consumer Key b)Consumer secret
 </li>
+</ul>
+<div></div>
+<h1>HTTP Status codes</h1>
+<ul>
+  <li>500 - probably means you forgot to configure the node</li>
+  <li>401 - means the consumer key and/or consumer secret is wrong</li>
+  <li>422 - probably the phone number is wrong</li>
+
 </ul>
 
 </script>
