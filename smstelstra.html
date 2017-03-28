@@ -13,6 +13,35 @@
     icon: "envelope.png",
     label: function() {
       return this.name || "smstelstra";
+    },
+    oneditprepare: function() {
+      var that = this;
+   
+      this.editor = RED.editor.createEditor({
+        id: 'node-input-message-editor',
+        mode: 'ace/mode/text',
+        value: $('#node-input-message').val(),
+        globals: {
+                    msg:true,
+                    context:true,
+                    RED: true,
+                    util: true,
+                    flow: true,
+                    global: true,
+                    console: true,
+                    Buffer: true,
+                    setTimeout: true,
+                    clearTimeout: true,
+                    setInterval: true,
+                    clearInterval: true
+                }
+      });
+     
+    },
+
+    oneditsave: function() {
+      $("#node-input-message").val(this.editor.getValue());
+      delete this.editor;
     }
 });
 </script>
@@ -28,11 +57,14 @@
   </div>
   <div class="form-row">
    <label for="node-input-mobile">Mobile Number(s)</label>
-   <input type="text" id="node-input-mobile" placeholder="04xxxxxxxx  (comma-separated for multiple)" />
+   <input type="text" id="node-input-mobile" placeholder="04xxxxxxxx (comma-separated for multiple)" />
   </div>
-  <div class="form-row">
-   <label for="node-input-message">Message</label>
-   <input type="text" id="node-input-message" placeholder="If empty, msg.payload contains message" />
+  <div class="form-row" style="margin-bottom: 0px;">
+   <label for="node-input-message">Message(Max. 160 characters)</label>
+   <input type="hidden" id="node-input-message" autofocus="autofocus" />
+  </div>
+  <div class="form-row node-text-editor-row">
+    <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-message-editor" ></div>
   </div>
 </script>
 
