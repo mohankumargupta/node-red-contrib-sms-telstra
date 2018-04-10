@@ -22,7 +22,7 @@ module.exports = function (RED) {
       };
       
 
-      msgpayload = msg.payload;
+      var msgpayload = msg.payload;
 
       httpsrequest(options).then(function(body){                 
         
@@ -30,12 +30,10 @@ module.exports = function (RED) {
         var authorization = "Bearer " + access_token;
 
         var message = config.message.trim();
-        if (!message) {
-         if (msgpayload) {
+        if (msgpayload !== "") {
            message = msgpayload;
-         }          
-        }
-        
+        }          
+          
         var mobilenumbers = config.mobile.replace(/\s+/g, '').split(",");             
  
         mobilenumbers.forEach(function(mobile) {

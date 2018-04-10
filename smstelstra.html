@@ -1,7 +1,7 @@
 <script type="text/javascript">
   RED.nodes.registerType('smstelstra', {
-    category: "mobile",
-    color: "#3FADB5",
+    category: "function",
+    color: "#E2D96E",
     defaults: {
      consumerkey: {value: ""},
      consumersecret: {value: ""},
@@ -10,38 +10,9 @@
     },
     inputs: 1,
     outputs: 1,
-    icon: "envelope.png",
+    icon: "debug.png",
     label: function() {
       return this.name || "smstelstra";
-    },
-    oneditprepare: function() {
-      var that = this;
-   
-      this.editor = RED.editor.createEditor({
-        id: 'node-input-message-editor',
-        mode: 'ace/mode/text',
-        value: $('#node-input-message').val(),
-        globals: {
-                    msg:true,
-                    context:true,
-                    RED: true,
-                    util: true,
-                    flow: true,
-                    global: true,
-                    console: true,
-                    Buffer: true,
-                    setTimeout: true,
-                    clearTimeout: true,
-                    setInterval: true,
-                    clearInterval: true
-                }
-      });
-     
-    },
-
-    oneditsave: function() {
-      $("#node-input-message").val(this.editor.getValue());
-      delete this.editor;
     }
 });
 </script>
@@ -56,41 +27,11 @@
    <input type="text" id="node-input-consumersecret" placeholder="" />
   </div>
   <div class="form-row">
-   <label for="node-input-mobile">Mobile Number(s)</label>
-   <input type="text" id="node-input-mobile" placeholder="04xxxxxxxx (comma-separated for multiple)" />
+   <label for="node-input-mobile">Mobile Number</label>
+   <input type="text" id="node-input-mobile" placeholder="04xxxxxxxx" />
   </div>
-  <div class="form-row" style="margin-bottom: 0px;">
-   <label for="node-input-message">Message(Max. 160 characters)</label>
-   <input type="hidden" id="node-input-message" autofocus="autofocus" />
+  <div class="form-row">
+   <label for="node-input-message">Message</label>
+   <input type="text" id="node-input-message" placeholder="If blank, comes from msg.payload " />
   </div>
-  <div class="form-row node-text-editor-row">
-    <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-message-editor" ></div>
-  </div>
-</script>
-
-<script type="text/x-red" data-help-name="smstelstra">
-SMS to Australian mobile phone using <a href="https://dev.telstra.com/content/sms-api-0">Telstra SMS API</a> 
-<hr/>
-<h1>Steps to using Telstra SMS API:</h1>
-<ul>
- <li>Register using link above</li>
- <li>Login</li>
- <li>Hover mouse over username to the left of the Logout menu item, and select My Apps</li>
- <li>Click Add a new App</li>
- <li>Check SMS API and give your app a name</li>
- <li>It may take some time (like days) to get your app approved</li>
- <li>Once approved, on the "Add and manage your API keys" screen, your app should show up </li> 
- <li>Click on the App, under the Keys tab, you should see the two bits of info you need:
-     a)Consumer Key b)Consumer secret
-</li>
-</ul>
-<div></div>
-<h1>HTTP Status codes</h1>
-<ul>
-  <li>500 - probably means you forgot to configure the node</li>
-  <li>401 - means the consumer key and/or consumer secret is wrong</li>
-  <li>422 - probably the phone number is wrong or message is empty</li>
-
-</ul>
-
 </script>
